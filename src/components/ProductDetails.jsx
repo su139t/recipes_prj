@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
+  const params = useParams();
   return (
     <div className="p-6 bg-gray-800 min-h-screen text-white">
       {/* Go Back Button */}
@@ -16,15 +17,15 @@ const ProductDetails = () => {
         ← Go Back
       </button>
 
-      <h1 className="text-3xl font-bold mb-4">iPhone 15 Pro</h1>
+      <h1 className="text-3xl font-bold mb-4">{params.name}</h1>
 
       <p className="text-xl mb-2">Price: ₹1,39,900</p>
 
-      <p className="mb-4">
+      {/* <p className="mb-4">
         The iPhone 15 Pro features a strong titanium frame, A17 Pro chip, and a
         stunning 6.1-inch Super Retina XDR display. Designed for performance,
         durability, and photography.
-      </p>
+      </p> */}
 
       <h3 className="text-xl font-semibold mb-2">Key Features:</h3>
       <ul className="list-disc list-inside space-y-1">
