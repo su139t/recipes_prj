@@ -4,7 +4,7 @@ import Mainroutes from "./routes/Mainroutes";
 function App() {
   return (
     <>
-      <div className="h-screen w-screen bg-gray-800 text-white px-[10%]">
+      <div className="h-screen w-full bg-gray-800 text-white px-[10%]">
         <Navbar/>
         <Mainroutes/>
       </div>
