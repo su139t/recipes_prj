@@ -2,23 +2,29 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { nanoid } from "nanoid";
 import { recipecontext } from "../context/RecipeContext";
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
-  // const datalist = []
+  const navigate = useNavigate();
   const { data, setdata } = useContext(recipecontext);
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const SubmitHandler = (formdata) => {
-    console.log(formdata);
     formdata.id = nanoid();
-    //  const copydata = [...data];
-    //  copydata.push(formdata);
-    // setdata(copydata);
     setdata([...data, formdata]);
+    toast.success("Created Successfully...")
     reset();
+    navigate("/recipes")
   };
+
   return (
-    <div className="flex flex-col lg:flex-row justify-between gap-10 p-5 md:p-10 border rounded-2xl">
+    <div className="flex  bg-amber-50 flex-col lg:flex-row justify-between gap-10 p-5 md:p-10 border rounded-2xl text-black">
       {/* Image Section */}
       <div className="relative w-full lg:w-1/2 h-64 lg:h-auto">
         <img
@@ -26,60 +32,112 @@ const Create = () => {
           alt="Image"
           className="w-full h-full object-cover rounded-2xl"
         />
-        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-800 to-transparent rounded-b-2xl"></div>
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-amber-50 to-transparent rounded-b-2xl"></div>
       </div>
 
       {/* Form Section */}
       <div className="flex flex-col w-full lg:w-1/2 space-y-4">
         <form className="space-y-4" onSubmit={handleSubmit(SubmitHandler)}>
+          {/* Image URL */}
           <input
             className="border-0 border-b w-full pb-3 focus:outline-none"
-            {...register("image")}
+            {...register(
+              "image"
+              //, {
+              // required: "Image URL is required",
+              // pattern: {
+              //   value: /^(https?:\/\/.*\.(?:png|jpg|jpeg|webp|gif|svg))$/i,
+              //   message: "Enter a valid image URL",
+              // },
+              // }
+            )}
             type="url"
             placeholder="Recipe Image URL..."
           />
-          <small className="text-red-400">
-            This is how error will be shown
-          </small>
+          {/* {errors.image && (
+            <small className="text-red-400">{errors.image.message}</small>
+          )} */}
 
+          {/* Title */}
           <input
             className="border-0 border-b w-full py-3 focus:outline-none"
-            {...register("title")}
+            {...register(
+              "title"
+              //   , {
+              //   required: "Title is required",
+              //   minLength: {
+              //     value: 3,
+              //     message: "Title must be at least 3 characters",
+              //   },
+              // }
+            )}
             type="text"
             placeholder="Recipe Title..."
           />
-          <small className="text-red-400">
-            This is how error will be shown
-          </small>
+          {/* {errors.title && (
+            <small className="text-red-400">{errors.title.message}</small>
+          )} */}
 
+          {/* Description */}
           <textarea
             className="border-0 border-b w-full py-3 focus:outline-none"
-            {...register("description")}
-            type="text"
+            {...register(
+              "description"
+              //   , {
+              //   required: "Description is required",
+              //   minLength: {
+              //     value: 10,
+              //     message: "Description must be at least 10 characters",
+              //   },
+              // }
+            )}
             placeholder="Description..."
           />
-          <small className="text-red-400">
-            This is how error will be shown
-          </small>
+          {/* {errors.description && (
+            <small className="text-red-400">
+              {errors.description.message}
+            </small>
+          )} */}
 
+          {/* Ingredients */}
           <textarea
             className="border-0 border-b w-full pt-3 focus:outline-none"
-            {...register("ingredient")}
+            {...register(
+              "ingredient"
+              //   , {
+              //   required: "Ingredients are required",
+              // }
+            )}
             placeholder="//write ingredients separated by comma"
           />
-          <small className="text-red-400">
-            This is how error will be shown
-          </small>
+          {/* {errors.ingredient && (
+            <small className="text-red-400">
+              {errors.ingredient.message}
+            </small>
+          )} */}
 
+          {/* Category */}
           <select
             className="border-0 border-b w-full pt-3 focus:outline-none"
-            {...register("category")}
+            {...register(
+              "category"
+              //   , {
+              //   required: "Category is required",
+              // }
+            )}
           >
-            <option value="soups">soups</option>
-            <option value="desserts">desserts</option>
-            <option value="breakfast">breakfast</option>
-            <option value="main-dishes">main-dishes</option>
+            <option value="">Select Category</option>
+            <option value="soups">Soups</option>
+            <option value="desserts">Desserts</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="main-dishes">Main Dishes</option>
           </select>
+          {/* {errors.category && (
+            <small className="text-red-400">
+              {errors.category.message}
+            </small>
+          )} */}
+
           <div className="flex justify-end pt-4">
             <button className="bg-gray-900 text-white rounded-xl py-2 px-5 hover:bg-gray-700 transition">
               Save Recipe
