@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const About = () => {
   const navigate = useNavigate();
   return (
-    <div className="px-6 py-12 md:px-16 lg:px-32 rounded-2xl bg-amber-50 min-h-screen">
+    <div className="px-6 py-12  md:px-16 lg:px-32 rounded-2xl bg-amber-50 min-h-screen">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">

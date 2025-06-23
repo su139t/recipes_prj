@@ -14,7 +14,7 @@ const RecipeCard = ({ recipe }) => {
         className="w-full h-48 object-cover px-2 py-3 rounded-2xl"
       />
       <div className="px-4 py-2">
-        <h1 className="text-lg font-semibold text-red-400 truncate">{title}</h1>
+        <h1 className="text-lg font-bold text-red-400 truncate">{title}</h1>
         <p className="text-sm text-gray-700 break-words mt-2">
           {description.slice(0, 100)}...{" "}
           <small className="text-blue-400">more</small>
