@@ -1,8 +1,7 @@
-import React from "react";
 import RecipeCard from "../components/RecipeCard";
 
 const Fav = () => {
-  const favdata = JSON.parse(localStorage.getItem("fav"));
+  const favdata = JSON.parse(localStorage.getItem("fav")) || [];
   console.log("fav recipe", favdata);
   const renderrecipe = favdata.map((recipe) => (
     <RecipeCard key={recipe.id} recipe={recipe} />
