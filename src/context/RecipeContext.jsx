@@ -1,6 +1,5 @@
 import React, { createContext, useEffect } from "react";
 import { useState } from "react";
-import { set } from "react-hook-form";
 
 export const recipecontext = createContext(null);
 
@@ -9,9 +8,6 @@ const RecipeContext = (props) => {
   useEffect(() => {
     setdata(JSON.parse(localStorage.getItem("recipes"))||[]);
   }, []);
-  // setdata(recipe);
-  // setdata(recipe);
-  console.log(data);
 
   return (
     <recipecontext.Provider value={{ data, setdata }}>

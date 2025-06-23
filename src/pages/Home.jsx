@@ -20,13 +20,13 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-amber-50 px-6 md:px-16 py-10 space-y-20">
+    <div className="min-h-screen mb-10 bg-amber-50 px-6 md:px-16 py-10 space-y-20 rounded-2xl">
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="text-center"
+        className="text-center mb-5"
       >
         <h1 className="text-5xl md:text-6xl font-extrabold text-red-500">
           🍽️ Tasty<span className="text-gray-900">Bites</span>
