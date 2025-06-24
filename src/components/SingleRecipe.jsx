@@ -38,6 +38,8 @@ const SingleRecipe = () => {
   const DeleteHandler = () => {
     const updatedList = data.filter((r) => r.id !== id);
     localStorage.setItem("recipes", JSON.stringify(updatedList));
+    localStorage.removeItem("fav")
+    localStorage.setItem("fav", JSON.stringify(updatedList));
     setdata(updatedList);
     toast.success("Deleted Successfully...");
     navigate("/recipes");
